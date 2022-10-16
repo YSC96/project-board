@@ -21,7 +21,7 @@ class ArticleControllerTest {
     ArticleControllerTest(@Autowired MockMvc mvc) {
         this.mvc = mvc;
     }
-    @Disabled("구현 중")
+
     @DisplayName("[view][GET] 게시글 리스트 ")
     @Test
     public void givenNothing_whenRequestingArticlesView_thenReturnsArticlesView() throws Exception{
@@ -30,7 +30,7 @@ class ArticleControllerTest {
         //When & Then
         mvc.perform(get("/articles"))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.TEXT_HTML))
+                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
                 .andExpect(view().name("articles/index")) // 어떤 view 인지(= articles/index"가 맞는지) 검사
                 .andExpect(model().attributeExists("articles"));
     }
